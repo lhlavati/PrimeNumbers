@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>Prime Numbers</title>
+	</head>
+	<body>
+		<div class="numbers">
+			<form method="get" action="/numbers" id="frmMinMax">
+				<label for="min">Enter min:</label>
+				<input type="number" id="min" name="min" min="2"/><br>
+				<label for="max">Enter max:</label>
+				<input type="number" id="max" name="max" min="2"/>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+		<div class="results">
+			<h4>Prime numbers between <span th:text="${min}"/> and <span th:text="${max}"/> are:</h4>
+			<!--<div th:each="index : ${array}">
+				<span th:text="${index}"></span>
+			</div>-->
+			<ul th:each="index : ${array}">
+			    <li th:text="${index}"></li>
+			</ul>
+		</div>
+	</body>
+</html>
