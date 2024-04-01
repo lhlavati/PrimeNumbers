@@ -12,10 +12,6 @@ public class NumberController {
 	
 	@GetMapping("/numbers")
 	public String getNumbersView(ModelMap model, @RequestParam("min") int min, @RequestParam("max") int max) {
-		if(min >= max){
-			System.out.println("Max must be greater than min!!");
-		}
-		
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		for (int num = min; num <= max; num++) {
             if (isNumPrime(num)) {

@@ -6,20 +6,44 @@
 		<div class="numbers">
 			<form method="get" action="/numbers" id="frmMinMax">
 				<label for="min">Enter min:</label>
-				<input type="number" id="min" name="min" min="2"/><br>
+				<input type="number" id="min" name="min" min="2" required style="margin-bottom: 15px;"/><br>
 				<label for="max">Enter max:</label>
-				<input type="number" id="max" name="max" min="2"/>
-				<button type="submit">Submit</button>
+				<input type="number" id="max" name="max" min="2" required/><br>
+				<button type="submit" onclick="submitForm()" style="margin-top: 20px;">Submit</button>
 			</form>
 		</div>
 		<div class="results">
 			<h4>Prime numbers between <span th:text="${min}"/> and <span th:text="${max}"/> are:</h4>
-			<!--<div th:each="index : ${array}">
-				<span th:text="${index}"></span>
-			</div>-->
 			<ul th:each="index : ${array}">
 			    <li th:text="${index}"></li>
 			</ul>
 		</div>
+		<script>
+			var min = document.getElementById("min");
+			var max = document.getElementById("max");
+			
+			function validateForm(frmMinMax){
+				if (min.value == "" || max.value == ""){
+					alert("Min or Max should not be empty!");
+					return false;
+			  	}
+				
+				if (parseInt(min.value) >= parseInt(max.value)) {
+				    alert("Min must be lower than Max!");
+					return false;
+			  	}
+				
+				return true;
+			}
+			
+			function submitForm(){
+				var frmMinMax = document.getElementById("frmMinMax");
+				if(!validateForm(frmMinMax)){
+					return;
+				} else {
+					frmMinMax.submit();
+				}
+			}
+		</script>
 	</body>
 </html>
