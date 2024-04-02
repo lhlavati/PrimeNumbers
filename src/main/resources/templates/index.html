@@ -39,7 +39,7 @@
 			function submitForm(){
 				var frmMinMax = document.getElementById("frmMinMax");
 				if(!validateForm(frmMinMax)){
-					return;
+					frmMinMax.reset();
 				} else {
 					frmMinMax.submit();
 				}
