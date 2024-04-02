@@ -24,6 +24,11 @@
 			var max = document.getElementById("max");
 			
 			function validateForm(frmMinMax){
+				if (parseInt(min.value) <= 1){
+					alert("Min must be 2 or higher!");
+					return false;
+				}
+				
 				if (min.value == "" || max.value == ""){
 					alert("Min or Max should not be empty!");
 					return false;
