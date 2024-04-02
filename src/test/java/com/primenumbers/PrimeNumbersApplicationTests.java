@@ -1,6 +1,6 @@
 package com.primenumbers;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
@@ -27,18 +27,6 @@ public class PrimeNumbersApplicationTests {
 		arrExpected.add(19);
 		ArrayList<Integer> arrActual = numbersService.primeNumArr(5, 20);
 		
-		int[] arrayExpected = arrExpected.stream().mapToInt(i -> i).toArray();
-		int[] arrayActual = arrActual.stream().mapToInt(i -> i).toArray();
-		
-		System.out.println(arrayExpected);
-		System.out.println(arrayActual);
-		assertArrayEquals(arrayExpected, arrayActual);
-		
-		/*
-		 * if(arrExpected.equals(arrActual)) { System.out.println("Same");
-		 * System.out.println(arrExpected); System.out.println(arrActual); } else {
-		 * System.out.println("Not same"); System.out.println(arrExpected);
-		 * System.out.println(arrActual); }
-		 */
+		assertEquals(arrExpected, arrActual);
 	}
 }
