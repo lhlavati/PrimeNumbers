@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.primenumbers.db.Numbers;
 import com.primenumbers.repository.NumbersRepository;
+import com.primenumbers.service.NumbersService;
 
 @Controller
 public class NumberController {
@@ -17,18 +18,14 @@ public class NumberController {
 	@Autowired
 	private NumbersRepository numbersRepo;
 	
+	@Autowired
+	private NumbersService numbersService;
+	
 	@GetMapping("/numbers")
 	public String getNumbersView(ModelMap model, @RequestParam("min") int min, @RequestParam("max") int max) {
 		
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		for (int num = min; num <= max; num++) {
-            if (isNumPrime(num)) {
-            	array.add(num);
-            }
-        }
-		
+		ArrayList<Integer> array = numbersService.primeNumArr(min, max);
 		String strArr = array.toString();
-		
 		if(numbersRepo.findByMinAndMax(min, max).isEmpty()) {
 			numbersRepo.save(new Numbers(min, max, strArr));
 			model.put("duplicate", false);
@@ -44,15 +41,4 @@ public class NumberController {
 			return "index";
 		}
 	}
-	
-	private boolean isNumPrime(int num) {
-        
-        for (int i = 2; i <= num / 2; i++) {
-            if (num % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-	
 }
