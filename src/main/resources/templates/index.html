@@ -13,7 +13,8 @@
 			</form>
 		</div>
 		<div class="results">
-			<h4>Prime numbers between <span th:text="${min}"/> and <span th:text="${max}"/> are:</h4>
+			<h4 th:if="${duplicate}"><span th:text="${min}"/> and <span th:text="${max}"/> are already in DB, prime numbers are:</h4>
+			<h4 th:unless="${duplicate}">Prime numbers between <span th:text="${min}"/> and <span th:text="${max}"/> are:</h4>
 			<ul th:each="index : ${array}">
 			    <li th:text="${index}"></li>
 			</ul>
