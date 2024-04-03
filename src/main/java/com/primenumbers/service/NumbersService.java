@@ -22,6 +22,7 @@ public class NumbersService {
 	public String getPrimeNumbers(ModelMap model, int min, int max){
 		
 		Numbers numbers = numbersRepo.findByMinAndMax(min, max);
+		System.out.println(numbers);
 		List<Integer> array;
 		if(numbers == null) {
 			model.put("duplicate", false);
@@ -30,7 +31,10 @@ public class NumbersService {
 			numbersRepo.save(new Numbers(min, max, strArr));
 		} else {
 			model.put("duplicate", true);
-			array = Arrays.stream(numbers.getPrimeNumbers().split(",")).map(Integer::parseInt).toList();
+			array = numbers.getPrimeNumbers().isEmpty() ? array = List.of() : Arrays.stream(numbers.getPrimeNumbers()
+																					.split(","))
+																					.map(Integer::parseInt)
+																					.toList();
 		}
 		
 		model.put("array", array);
