@@ -22,7 +22,6 @@ public class NumbersService {
 	public String getPrimeNumbers(ModelMap model, int min, int max){
 		
 		Numbers numbers = numbersRepo.findByMinAndMax(min, max);
-		System.out.println(numbers);
 		List<Integer> array;
 		if(numbers == null) {
 			model.put("duplicate", false);
